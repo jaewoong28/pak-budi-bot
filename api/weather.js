@@ -1,13 +1,11 @@
 export default async function handler(req, res) {
-  const OWM_KEY = process.env.OWM_KEY;
+  const OWM_KEY = "20e4c950bcbe3acf63fa6b94be614f70"; // 임시 하드코딩
 
   try {
     const weatherRes = await fetch(
       `https://api.openweathermap.org/data/2.5/forecast?q=Seoul&appid=${OWM_KEY}&units=metric&lang=kr&cnt=8`
     );
     const weather = await weatherRes.json();
-
-    // 일단 전체 응답 그대로 반환
     res.status(200).json(weather);
   } catch (err) {
     res.status(500).json({ error: err.message });
