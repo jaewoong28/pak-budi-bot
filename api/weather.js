@@ -5,7 +5,7 @@ export default async function handler(req, res) {
 
   try {
     const weatherRes = await fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?q=Seoul&appid=${OWM_KEY}&units=metric&lang=kr&cnt=8`
+      `https://api.openweathermap.org/data/2.5/forecast?q=Tawau&appid=${OWM_KEY}&units=metric&lang=kr&cnt=8`
     );
     const weather = await weatherRes.json();
 
@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     const rain = today.rain?.['3h'] ?? 0;
     const wind = today.wind.speed;
 
-    const message = `🌤 오늘 서울 날씨\n\n☁️ ${desc}\n🌡 현재: ${temp}°C (체감 ${feels}°C)\n📊 최고: ${tempMax}° / 최저: ${tempMin}°\n💧 습도: ${humidity}%\n🌧 강수: ${rain}mm\n💨 바람: ${wind}m/s`;
+    const message = `🌤 오늘 타와우 날씨\n\n☁️ ${desc}\n🌡 현재: ${temp}°C (체감 ${feels}°C)\n📊 최고: ${tempMax}° / 최저: ${tempMin}°\n💧 습도: ${humidity}%\n🌧 강수: ${rain}mm\n💨 바람: ${wind}m/s`;
 
     await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
       method: 'POST',
